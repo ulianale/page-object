@@ -8,6 +8,7 @@ import ru.netology.web.page.LoginPage;
 
 import static com.codeborne.selenide.Selenide.*;
 
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class MoneyTransferTest {
     int amount;
     int balanceBefore1;
@@ -15,7 +16,7 @@ class MoneyTransferTest {
     DashboardPage dashboardPage;
 
     @BeforeEach
-    void SetUp() {
+    void setUp() {
         Configuration.holdBrowserOpen = true;
         open("http://localhost:9999");
         var loginPage = new LoginPage();

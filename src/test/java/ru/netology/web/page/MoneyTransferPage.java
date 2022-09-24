@@ -13,17 +13,19 @@ public class MoneyTransferPage {
     private SelenideElement transferButton = $("[data-test-id='action-transfer']");
     private SelenideElement error = $("[data-test-id = error-notification]");
 
-    public void successTransfer(DataHelper.CardInfo info, int amount) {
+    public void transferMoney(DataHelper.CardInfo info, int amount) {
         amountField.setValue(String.valueOf(amount));
         cardNumberField.setValue(info.getCardNumber());
         transferButton.click();
+    }
+
+    public void successTransfer(DataHelper.CardInfo info, int amount) {
+        transferMoney(info, amount);
         error.shouldNotBe(Condition.visible);
     }
 
     public void errorTransfer(DataHelper.CardInfo info, int amount) {
-        amountField.setValue(String.valueOf(amount));
-        cardNumberField.setValue(info.getCardNumber());
-        transferButton.click();
+        transferMoney(info, amount);
         error.shouldBe(Condition.visible);
     }
 
